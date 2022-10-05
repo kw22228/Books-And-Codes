@@ -41,7 +41,6 @@ class Rabbit extends Animal {
 
     constructor(name, earLength) {
         super(name);
-        this.speed = 0;
         // this.name = name + '자식';
         this.earLength = earLength;
     }
