@@ -1,4 +1,4 @@
-import Items from './Items.js';
+import Items from './components/Items.js';
 
 class App {
     constructor() {
