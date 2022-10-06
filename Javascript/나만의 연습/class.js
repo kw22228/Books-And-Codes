@@ -17,19 +17,30 @@
 // const ionic = new ElectricCar('ionic', '2020', 5000, 200);
 
 class Animal {
+    _speed;
+
     constructor(name) {
-        this.speed = 0;
+        this._speed = 0;
         this.name = name + '부모';
     }
 
     run(speed) {
-        this.speed = speed;
+        this._speed = speed;
         console.log(this.speed);
     }
     stop() {
         console.log('부모쪽 메서드 실행');
-        this.speed = 0;
+        this._speed = 0;
         console.log(this.speed);
+    }
+
+    static init() {
+        this._speed = 0;
+        console.log('init');
+    }
+
+    get speed() {
+        return this._speed;
     }
 }
 
@@ -62,3 +73,17 @@ const rabbit = new Rabbit('흰 토끼');
 rabbit.stop();
 
 console.log(rabbit.name);
+
+const anim1 = new Animal('동물1');
+const anim2 = new Animal('동물2');
+
+anim1.run(2);
+anim2.run(5);
+
+console.log(anim1.speed);
+console.log(anim2.speed);
+
+Animal.init();
+
+console.log(anim1.speed);
+console.log(anim2.speed);
