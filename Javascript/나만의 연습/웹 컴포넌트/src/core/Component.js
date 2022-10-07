@@ -1,21 +1,24 @@
 export default class Component {
     _target;
     _state;
+    _props;
 
-    constructor(target) {
+    constructor(target, props) {
         this._target = target;
+        this._props = props || null;
+
         this.setDefault();
-
         this.setEvent();
-
         this.render();
     }
 
     setDefault() {}
+    mounted() {}
     getTemplate() {}
 
     render() {
         this._target.innerHTML = this.getTemplate();
+        this.mounted();
     }
 
     setEvent() {}
