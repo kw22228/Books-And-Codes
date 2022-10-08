@@ -13,7 +13,7 @@ export default class Component {
     }
 
     setup() {
-        this._state = observable(this.initState()); //state 관찰
+        // this._state = observable(this.initState()); //state 관찰
         observe(() => {
             this.render();
             this.setEvent();
