@@ -1,0 +1,17 @@
+{
+    "name": "virtual-dom",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "babel": "babel -w src --out-dir dist"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.19.3",
+        "@babel/core": "^7.19.3",
+        "@babel/plugin-transform-react-jsx": "^7.19.0",
+        "@babel/preset-env": "^7.19.4"
+    }
+}
