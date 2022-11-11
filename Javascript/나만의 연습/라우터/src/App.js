@@ -1,25 +1,36 @@
-import createRouter from './router';
+import Router from './router/router';
 
 const createPages = container => {
     const home = () => {
         container.innerHTML = 'home page';
     };
-    const list = () => {
-        container.innerHTML = 'list page';
+
+    const list = ({ category }) => {
+        container.innerHTML = `list ${category} page`;
     };
+
+    const blog = ({ category, post }) => {
+        container.innerHTML = `category: ${category}<br> post: ${post}`;
+    };
+
     const notFound = () => {
         container.innerHTML = 'not found';
     };
 
-    return { home, list, notFound };
+    return {
+        home,
+        list,
+        blog,
+        notFound,
+    };
 };
 
-const container = document.querySelector('main');
-const pages = createPages(container);
+const pages = createPages(document.querySelector('main'));
+const router = new Router();
 
-const router = createRouter();
-router //
+router
     .addRoute('/', pages.home)
-    .addRoute('/list', pages.list)
+    .addRoute('/list/:category', pages.list)
+    .addRoute('/blog/:category/:post', pages.blog)
     .setNotFound(pages.notFound)
     .start();
