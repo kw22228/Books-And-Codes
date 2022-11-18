@@ -124,3 +124,95 @@ try {
 } catch (e) {
     console.log(e);
 }
+
+console.log('---------------- has trap ---------------');
+
+const range = new Proxy(
+    { start: 1, end: 10 },
+    {
+        has(target, prop) {
+            return prop >= target.start && prop <= target.end;
+        },
+    }
+);
+
+console.log(5 in range);
+console.log(11 in range);
+
+console.log('---------------- apply trap ---------------');
+
+// const delay =
+//     (f, ms) =>
+//     (...args) =>
+//         setTimeout(() => {
+//             f.apply(this, args);
+//         }, ms);
+
+// sayHi('John');
+
+function delay(f, ms) {
+    return new Proxy(f, {
+        apply(target, thisArg, args) {
+            setTimeout(() => target.apply(thisArg, args), ms);
+        },
+    });
+}
+
+const sayHi = delay(user => console.log(user), 3000);
+console.log(sayHi.length);
+// sayHi('John');
+
+console.log('---------------- Reflect ---------------');
+
+const user1 = {
+    age: 30,
+};
+Reflect.set(user1, 'name', 'John');
+console.log(user1);
+
+console.log('---------------- Solution ---------------');
+
+// let u = {
+//     name: 'John',
+// };
+
+// function wrap(target) {
+//     return new Proxy(target, {
+//         get(target, prop) {
+//             if (!target[prop]) throw new Error(`ReferenceError: Property doesn't exist "${prop}"`);
+
+//             return target[prop];
+//         },
+//     });
+// }
+
+// u = wrap(u);
+
+// console.log(u.name);
+// console.log(u.age);
+
+const handlers = Symbol('handlers');
+function makeObservable(target) {
+    target[handlers] = [];
+
+    target.observe = function (handler) {
+        this[handlers].push(handler);
+    };
+
+    return new Proxy(target, {
+        set(target, prop, value, receiver) {
+            const success = Reflect.set(target, prop, value, receiver);
+            if (success) {
+                target[handlers].forEach(handler => handler(prop, value));
+            }
+            return true;
+        },
+    });
+}
+const ob = makeObservable({});
+
+ob.observe((key, value) => {
+    console.log(`SET ${key}=${value}`);
+});
+ob.name = 'John';
+ob.age = 30;
