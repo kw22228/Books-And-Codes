@@ -1,3 +1,3 @@
-import Store from './store/index.js';
+import InputMirror from '../../웹 컴포넌트2/src/components/InputMirror';
 
-export default Store;
+new InputMirror('#root');
