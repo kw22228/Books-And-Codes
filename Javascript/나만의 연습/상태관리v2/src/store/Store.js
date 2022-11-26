@@ -1,3 +1,5 @@
+import Mediator from './mediator';
+
 export default class Store {
     #actions;
     #mutations;
@@ -9,7 +11,7 @@ export default class Store {
         this.#actions = actions || {}; // 액션 담을 공간
         this.#mutations = mutations || {}; // Mutation을 담을 공간
         this.#status = 'resting'; // Store의 현재 상태
-        this.#events = {}; // 구독한 컴포넌트들에게 state가 업데이트될때 등록된 event를 알림
+        this.#events = new Mediator(); // 구독한 컴포넌트들에게 state가 업데이트될때 등록된 event를 알림
 
         this.state = new Proxy(state || {}, {
             get: (target, prop) => {
@@ -22,6 +24,7 @@ export default class Store {
                 console.log(`stateChange: ${prop}: ${value}`);
 
                 this.#events.publish('stateChange', this.state);
+                t;
                 this.#status = 'resting';
 
                 return true;
