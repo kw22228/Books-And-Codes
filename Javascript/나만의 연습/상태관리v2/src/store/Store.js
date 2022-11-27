@@ -24,7 +24,6 @@ export default class Store {
                 console.log(`stateChange: ${prop}: ${value}`);
 
                 this.#events.publish('stateChange', this.state);
-                t;
                 this.#status = 'resting';
 
                 return true;
