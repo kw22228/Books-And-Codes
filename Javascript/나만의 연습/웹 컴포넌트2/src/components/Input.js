@@ -1,17 +1,19 @@
 import Component from '../core/Component.js';
+import store from '../store';
 
 export default class Input extends Component {
     template() {
         return /* html */ `
             <div>
-                <input class="input" value="${this.props.typed}" />
+                <input class="input" value="${store.getState().typed}" />
             </div>
         `;
     }
 
     setEvent() {
-        this.addEvent('change', '.input', event => {
-            this.props.handleChange(event.target.value);
+        this.addEvent('change', '.input', ({ target }) => {
+            store.dispatch('ADD_ITEM', target.value);
+            console.log(store.getState());
         });
     }
 }

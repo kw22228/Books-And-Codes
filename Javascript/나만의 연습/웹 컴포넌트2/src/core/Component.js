@@ -1,3 +1,4 @@
+import store from '../store';
 export default class Component {
     #target;
     #props;
@@ -9,6 +10,12 @@ export default class Component {
 
         this.setup();
         this.setEvent();
+
+        store.events.subscribe('stateChange', () => {
+            this.render();
+            this.mounted();
+        });
+
         this.render();
         this.mounted();
     }
