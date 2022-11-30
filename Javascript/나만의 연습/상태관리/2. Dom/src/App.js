@@ -12,12 +12,12 @@ export default class App extends Component {
     }
 
     setEvent() {
-        const { _element } = this;
-        _element.querySelector('#stateA').addEventListener('change', e => {
+        const { element } = this;
+        element.querySelector('#stateA').addEventListener('change', e => {
             store.state.a = Number(e.target.value);
         });
 
-        _element.querySelector('#stateB').addEventListener('change', e => {
+        element.querySelector('#stateB').addEventListener('change', e => {
             store.state.b = Number(e.target.value);
         });
     }

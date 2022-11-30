@@ -32,19 +32,19 @@ export const observable = obj => {
     const observerMap = {};
 
     return new Proxy(obj, {
-        get(target, name) {
-            observerMap[name] = observerMap[name] || new Set();
-            if (currentObserver) observerMap[name].add(currentObserver);
+        get(target, prop) {
+            observerMap[prop] = observerMap[prop] || new Set();
+            if (currentObserver) observerMap[prop].add(currentObserver);
 
-            return target[name];
+            return target[prop];
         },
 
-        set(target, name, value) {
-            if (target[name] === value) return true;
-            if (JSON.stringify(target[name]) === JSON.stringify(value)) return true;
+        set(target, prop, value) {
+            if (target[prop] === value) return true;
+            if (JSON.stringify(target[prop]) === JSON.stringify(value)) return true;
 
-            target[name] = value;
-            observerMap[name].forEach(fn => fn());
+            target[prop] = value;
+            observerMap[prop].forEach(fn => fn());
 
             return true;
         },

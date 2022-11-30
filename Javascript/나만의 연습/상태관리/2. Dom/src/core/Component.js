@@ -1,20 +1,21 @@
 import { observable, observe } from './observer.js';
 
 export default class Component {
-    _state;
-    _props;
-    _element;
+    state;
+    props;
+    element;
 
     constructor(element, props) {
-        this._element = element;
-        this._props = props;
+        this.element = element;
+        this.props = props;
 
         this.setup();
     }
 
     setup() {
-        // this._state = observable(this.initState()); //state 관찰
+        this.state = observable(this.initState()); //state 관찰
         observe(() => {
+            console.log('re-render');
             this.render();
             this.setEvent();
             this.mounted();
@@ -28,7 +29,7 @@ export default class Component {
         return '';
     }
     render() {
-        this._element.innerHTML = this.template();
+        this.element.innerHTML = this.template();
     }
     setEvent() {}
     mounted() {}
