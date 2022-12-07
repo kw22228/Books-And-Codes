@@ -1,0 +1,17 @@
+{
+    "name": "vt",
+    "version": "1.0.0",
+    "main": "virtualDom.js",
+    "scripts": {
+        "babel": "npx babel ./virtualDom.js --out-dir dist"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@babel/cli": "^7.19.3",
+        "@babel/core": "^7.20.5",
+        "@babel/plugin-transform-react-jsx": "^7.19.0",
+        "@babel/preset-env": "^7.20.2"
+    }
+}
