@@ -1,0 +1,27 @@
+### 타입스크립트 설정 이해하기
+
+-   tsc --noImplicitAny program.ts
+-   tsc --init으로 tsconfig.json 설정 파일을 통해 설정 가능.
+
+```javascript
+{
+    "compilerOptions":{
+        "noImplicitAny": true
+    }
+}
+```
+
+### 중요
+
+-   interface는 타입으로만 사용 가능하다.
+-   타입을 class로 선언하면 타입과 값으로 모두 사용가능하다. (@src shape.ts and shapeClass.ts 확인)
+
+-   타입연산은 런타임에 영향을 주지 않는다. 즉, 런타임 타입과 선언된 타입이 동일하지 않을 수 있다. (@src light.ts 확인)
+
+-   함수 오버로딩을 지원한다. 다만, 온전히 타입 수준의 함수 오버로딩만 가능(@src overloading.ts)
+
+### tsconfig.json 필수 option
+
+    -   noImplicitAny : 'any' 타입으로 구현된 표현식 혹은 정의 에러처리 여부 (true 설정 해놓자)
+    -   strictNullChecks : 엄격한 null과 undefined 확인 여부 (타입스크립트 초보자는 설정안해도 괜찮.. 나중에 설정해놓자)
+    -   noEmitOnError : 타입체커에 오류가 있으면 컴파일 하지 않는다.
