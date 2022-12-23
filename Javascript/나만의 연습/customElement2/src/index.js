@@ -1,6 +1,6 @@
 import './components/HelloWorld';
 import './components/CustomButton';
-import './components/ProfileInfo';
+import './components/ProfileInfo/ProfileInfo';
 
 const root = document.querySelector('#root');
 
@@ -31,7 +31,28 @@ root.innerHTML = /* html */ `
 
     <hr />
 
-    <profile-info></profile-info>
+    <profile-info 
+        name="Jaewon Kim" 
+        designation="FrontEnd Web Developer" 
+        id-number="200101" 
+        picture-src="https://avatars.githubusercontent.com/u/53852668?v=4"
+        employee-type="ft"
+    ></profile-info>
+    <profile-info 
+        name="Jaewon Kim" 
+        designation="FrontEnd Web Developer" 
+        id-number="200101" 
+        picture-src="https://avatars.githubusercontent.com/u/53852668?v=4"
+        employee-type="pt"
+    ></profile-info>
+    <profile-info 
+        name="Jaewon Kim" 
+        designation="FrontEnd Web Developer" 
+        id-number="200101" 
+        picture-src="https://avatars.githubusercontent.com/u/53852668?v=4"
+        employee-type="ct"
+    ></profile-info>
+
 
 `;
 

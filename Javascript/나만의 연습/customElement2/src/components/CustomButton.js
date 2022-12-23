@@ -17,7 +17,6 @@ export default class CustomButton extends HTMLElement {
 
     /** DOM에서 삭제되는 순간 불리워지는 Callback Method. 앞서 Event binding한게 있다면 여기서 삭제. */
     disconnectedCallback() {
-        console.log(this, '삭제');
         this.querySelector('button').removeEventListener('click', this.handler);
     }
 
@@ -28,13 +27,11 @@ export default class CustomButton extends HTMLElement {
 
     /** Observe 할 attributes를 설정한다. 배열안에 추가하는것으로 여러개 설정 가능. ex) ['aTitle', 'bTitle'] */
     static get observedAttributes() {
-        console.log('observedAttributes');
         return ['btitle'];
     }
 
     /** Custom Elements에 Attributes가 있거나, 변경되면 메소드가 실행된다. (주의. observedAttributes에 허용된것만 가능.) */
     attributeChangedCallback(attrName, oldValue, newValue) {
-        console.log(attrName, oldValue, newValue);
         this[attrName] = newValue;
 
         this.querySelector('button').innerText = newValue;
