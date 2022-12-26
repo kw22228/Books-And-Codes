@@ -1,11 +1,13 @@
-let num = 10; // number 타입으로 추론
+/** 타입추론에 대해서 알아보자!! */
+
+let num2 = 10; // number 타입으로 추론
 
 // 반환값을 number로 추론
-function add(a: number, b: number) {
+function add3(a: number, b: number) {
     return a + b;
 }
 
-function logMessage(message: string | null) {
+function logMessage2(message: string | null) {
     if (message) {
         message; // 조건문에서 null이 걸러지고 string으로 추론
     }
@@ -47,3 +49,11 @@ function getElement(elOrId: string | HTMLElement | null): HTMLElement {
         else return document.body;
     }
 }
+
+///////////////////////////////////////////////
+
+/** 타입 검색은 어떻게 하는걸까? */
+const response = fetch('http://example.com');
+
+// fetch를 ctrl + 마우스 클릭 해보면 lib.dom.d.ts로 들어가지면서 fetch에 대한 타입정의를 볼 수 있다.
+// 이러한 이미 정의된 타입을 가지고 fetch의 RequestInit과 같은 옵션을 검색하여 볼 수 있음.

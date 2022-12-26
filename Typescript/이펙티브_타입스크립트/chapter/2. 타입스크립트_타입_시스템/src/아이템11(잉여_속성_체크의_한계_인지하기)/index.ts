@@ -29,6 +29,10 @@ function createWindow(options: Options) {
         //setDarkMode();
     }
 }
+const options = {
+    title: 'Spider Solitaire',
+    darkmode: true,
+};
 createWindow({
     title: 'Spider Solitaire',
     darkmode: true,
@@ -40,7 +44,7 @@ const o2: Options = new HTMLAnchorElement(); //HTMLAnchorElement.title이 string
 const o: Options = { darkmode: true, title: 'Ski Free' };
 
 const intermediate = { darkmode: true, title: 'Ski Free' };
-const o3: Options = intermediate;
+const o3: Options = intermediate; // 구조적 타이핑
 
 const o4 = { darkmode: true, title: 'Ski Free' } as Options; // 타입단언문(잉여 속성체크 x)
 

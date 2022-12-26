@@ -1,3 +1,6 @@
+'hello' === new String('hello'); //false
+new String('hello') === new String('hello'); //false
+
 function getStringLen(foo: String) {
     return foo.length;
 }

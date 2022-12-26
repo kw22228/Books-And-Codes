@@ -1,31 +1,31 @@
-interface Person {
+interface Person5 {
     name: string;
 }
 
-const alice: Person = { name: 'Alice' }; // 타입선언
-const bob = { name: 'Bob' } as Person; // 타입단언
+const alice: Person5 = { name: 'Alice' }; // 타입선언
+const bob = { name: 'Bob' } as Person5; // 타입단언
 
-const alice2: Person = {};
-const bob2 = {} as Person;
+const alice2: Person5 = {};
+const bob2 = {} as Person5;
 
-const alice3: Person = {
+const alice3: Person5 = {
     name: 'Alice',
     occupation: 'Typescript developer',
 };
 const bob3 = {
     name: 'bob',
     occupation: 'Javascript developer',
-} as Person;
+} as Person5;
 
 //////////////////////////////////// 타입 선언 vs 타입 단언
 
-const people: Person[] = ['alice', 'bob', 'jan'].map(name => ({} as Person));
+const people: Person5[] = ['alice', 'bob', 'jan'].map(name => ({} as Person5));
 
-const people2: Person[] = ['alice', 'bob', 'jan'].map(name => {
-    const person: Person = { name };
+const people2: Person5[] = ['alice', 'bob', 'jan'].map(name => {
+    const person: Person5 = { name };
     return person;
 }); //이렇게 하는게 더 직관적이다
-const people3: Person[] = ['alice', 'bob', 'jan'].map((name): Person => ({ name })); // people2랑 똑같다. (반환타입이 Person)
+const people3: Person5[] = ['alice', 'bob', 'jan'].map((name): Person5 => ({ name })); // people2랑 똑같다. (반환타입이 Person)
 
 //////////////////////////////////// 타입 단언이 필요한 곳
 // 1. DOM Element를 단언.
@@ -37,7 +37,7 @@ document.querySelector('#myButton')?.addEventListener('click', e => {
 
 // 2. null을 단언
 const elNull = document.getElementById('foo'); // 타입: HTMLElement | null
-const el = document.getElementById('foo') as HTMLElement; // 타입: HTMLElement
+const el1 = document.getElementById('foo') as HTMLElement; // 타입: HTMLElement
 
 interface Person2 {
     name: string;
