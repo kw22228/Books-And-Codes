@@ -1,6 +1,8 @@
 import './components/HelloWorld';
 import './components/CustomButton';
 import './components/ProfileInfo/ProfileInfo';
+import './components/CompanyHeader/CompanyHeader';
+import './components/EventButton/EventButton';
 
 const root = document.querySelector('#root');
 
@@ -53,7 +55,19 @@ root.innerHTML = /* html */ `
         employee-type="ct"
     ></profile-info>
 
+    <hr />
 
+    <company-header icon="https://avatars.githubusercontent.com/u/53852668?v=4" pageTitle="My Page">
+        <h3 slot="slot-test">
+            Slot Test Text
+        </h3>
+    </company-header>
+
+    <hr />
+
+    <event-button b-title="클릭"></event-button>
+
+    
 `;
 
 //Shadow Dom
