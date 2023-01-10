@@ -114,10 +114,10 @@
     // ******* 이거의 차이 매우 중요한듯(filter의 callback함수 동작 방식이 다름) **********
     const members2 = ['Janet', 'Michael']
         .map(who => jackson5.find(n => n === who))
-        .filter(x => isDefined(x));
+        .filter(x => isDefined(x)); //여기서 x는 string|undefined
     const members3 = ['Janet', 'Michael']
         .map(who => jackson5.find(n => n === who)) // string|undefined []
-        .filter(isDefined);
+        .filter(isDefined); // isDefined가 함수자체로 넘겨지기때문에 파라미터가 정해지지않고 바로 string으로서 이행되는거같음.
 })();
 /*
 
