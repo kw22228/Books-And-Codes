@@ -51,13 +51,15 @@
 
   /** 실수를 저지르기 쉬운 예제 */
   const el2 = document.querySelector('foo');
-  if (typeof el2 === 'object') {
+  if (el2 instanceof Element) {
     el2; //null일때도 object이다.
   }
 
   function foo(x?: number | string | null) {
-    if (!x) {
+    if (x) {
       x; // '', 0, 모두 false이다.
+    } else {
+      x;
     }
   }
 
@@ -104,7 +106,7 @@
   //3. 타입가드를 이용한 배열과 객체의 타입 좁히기
   const jackson5 = ['Jackie', 'Tito', 'Jermaine', 'Marlon', 'Michael'];
   const members = ['Janet', 'Michael']
-    .map(who => jackson5.find(n => n === who))
+    .map(who => jackson5.find(n => n === who)) //['Michael']
     .filter(who => who !== undefined);
 
   function isDefined<T>(x: T | undefined): x is T {
@@ -119,8 +121,8 @@
     .map(who => jackson5.find(n => n === who)) // string|undefined []
     .filter(isDefined); // isDefined가 함수자체로 넘겨지기때문에 파라미터가 정해지지않고 바로 string으로서 이행되는거같음.
 
-  fetch('/rest').then(json => console.log(json));
-  fetch('/rest').then(console.log);
+  // fetch('/rest').then(json => console.log(json));
+  // fetch('/rest').then(console.log);
 })();
 /*
 

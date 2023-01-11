@@ -7,16 +7,16 @@ pt.y = 4;
 
 /** 인터페이스로 제각각만들때 나는 오류 */
 interface Point {
-    x: number;
-    y: number;
+  x: number;
+  y: number;
 }
 const pt2: Point = {};
 pt2.x = 3;
 pt2.y = 4;
 
 const pt3 = {
-    x: 3,
-    y: 4,
+  x: 3,
+  y: 4,
 };
 
 /** 타입 단언문으로 제각각 만들기 */
@@ -26,8 +26,8 @@ ptWithAs.y = 4;
 ptWithAs.z = 5;
 
 const pt4: Point = {
-    x: 3,
-    y: 4,
+  x: 3,
+  y: 4,
 };
 
 /** 작은 객체들을 조합해서 큰객체를 만들기 */
@@ -35,6 +35,8 @@ const pt5 = { x: 3, y: 4 };
 const id = { name: 'Pythagoras' };
 const namedPoint = {};
 Object.assign(namedPoint, pt5, id);
+
+//@ts-ignore
 namedPoint.name; //오류 (namedPoint는 {}타입)
 
 const newObj = { ...namedPoint, ...pt5, ...id };
@@ -44,7 +46,6 @@ const ptt0 = {};
 const ptt1 = { ...ptt0, x: 3 };
 const ptt: Point = { ...ptt1, y: 4 };
 
-/** 뭔가 책이랑 결과가 다름 */
 declare let hasMiddle: boolean;
 declare let hasDates: boolean;
 
@@ -53,15 +54,15 @@ const president = { ...firstLast, ...(hasMiddle ? { middle: 'S' } : {}) };
 
 const nameTitle = { name: 'Khufu', title: 'Pharaoh' };
 const pharaoh = {
-    ...nameTitle,
-    ...(hasDates ? { start: -2589, end: -2566 } : {}),
+  ...nameTitle,
+  ...(hasDates ? { start: -2589, end: -2566 } : {}),
 };
 pharaoh.start;
 /** 뭔가 책이랑 결과가 다름 */
 
 /** 선택적 필드방식으로 표현하기 */
 function addOptional<T extends object, U extends object>(a: T, b: U | null): T & Partial<U> {
-    return { ...a, ...b };
+  return { ...a, ...b };
 }
 const pharaohOptional = addOptional(nameTitle, hasDates ? { start: -2589, end: -2566 } : null);
 pharaoh.start;
