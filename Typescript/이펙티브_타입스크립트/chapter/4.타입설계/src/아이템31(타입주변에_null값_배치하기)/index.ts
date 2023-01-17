@@ -1,17 +1,17 @@
 // [0, 1, 2]에서 0일때 falsy값이 되어버림. ([0, 2]가 아니라 [1, 2]가 나온다.)
 // 배열이 비어있다면, [undefined, undefined]반환
 function extent(nums: number[]) {
-    let min, max;
-    for (const num of nums) {
-        if (!min) {
-            min = num;
-            max = num;
-        } else {
-            min = Math.min(min, num);
-            max = Math.max(max, num);
-        }
+  let min, max;
+  for (const num of nums) {
+    if (!min) {
+      min = num;
+      max = num;
+    } else {
+      min = Math.min(min, num);
+      max = Math.max(max, num);
     }
-    return [min, max];
+  }
+  return [min, max];
 }
 
 const [min, max] = extent([0, 1, 2]);
@@ -19,46 +19,46 @@ const span = max - min; // undefined 가능성 오류남.
 
 /** 리팩토링 */
 function extentRefactor(nums: number[]) {
-    let result: [number, number] | null = null;
-    // let result: [number, number] = [Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
-    for (const num of nums) {
-        if (!result) {
-            result = [num, num];
-        } else {
-            result = [Math.min(num, result[0]), Math.max(num, result[1])];
-        }
+  let result: [number, number] | null = null;
+  //   let result: [number, number] = [Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER];
+  for (const num of nums) {
+    if (!result) {
+      result = [num, num];
+    } else {
+      result = [Math.min(num, result[0]), Math.max(num, result[1])];
     }
-    return result;
+  }
+  return result;
 }
 const [minR, maxR] = extentRefactor([0, 1, 2]);
 const spanR = maxR - minR;
 
 const rangeR = extentRefactor([0, 1, 2]);
 if (rangeR) {
-    const [min, max] = rangeR;
-    const span = max - min;
+  const [min, max] = rangeR;
+  const span = max - min;
 }
 
 ////////////////////////////////////////////////////////////
 class UserPosts {
-    user: UserInfo31 | null;
-    posts: Post[] | null;
+  user: UserInfo31 | null;
+  posts: Post[] | null;
 
-    constructor() {
-        this.user = null;
-        this.posts = null;
-    }
+  constructor() {
+    this.user = null;
+    this.posts = null;
+  }
 
-    async init(userId: string) {
-        return Promise.all([
-            async () => (this.user = await fetchUser(userId)),
-            async () => (this.posts = await fetchPostsForUser(userId)),
-        ]);
-    }
+  async init(userId: string) {
+    return Promise.all([
+      async () => (this.user = await fetchUser(userId)),
+      async () => (this.posts = await fetchPostsForUser(userId)),
+    ]);
+  }
 
-    getUsername() {
-        return this.user.name;
-    }
+  getUsername() {
+    return this.user.name;
+  }
 }
 const userPostsCls = new UserPosts();
 const userName = userPostsCls.getUsername();
@@ -66,30 +66,30 @@ console.log(userName);
 
 /** 리팩토링 */
 class UserPostsRefactor {
-    user: UserInfo31;
-    posts: Post[];
+  user: UserInfo31;
+  posts: Post[];
 
-    constructor(user: UserInfo31, posts: Post[]) {
-        this.user = user;
-        this.posts = posts;
-    }
+  constructor(user: UserInfo31, posts: Post[]) {
+    this.user = user;
+    this.posts = posts;
+  }
 
-    static async init(userId: string): Promise<UserPostsRefactor> {
-        const [user, posts] = await Promise.all([fetchUser(userId), fetchPostsForUser(userId)]);
+  static async init(userId: string): Promise<UserPostsRefactor> {
+    const [user, posts] = await Promise.all([fetchUser(userId), fetchPostsForUser(userId)]);
 
-        return new UserPostsRefactor(user, posts);
-    }
+    return new UserPostsRefactor(user, posts);
+  }
 
-    getUserName() {
-        return this.user.name;
-    }
+  getUserName() {
+    return this.user.name;
+  }
 }
 
 (async () => {
-    const userPostsRefactorCls = await UserPostsRefactor.init('kw22228');
-    const userName = userPostsRefactorCls.getUserName();
+  const userPostsRefactorCls = await UserPostsRefactor.init('kw22228');
+  const userName = userPostsRefactorCls.getUserName();
 
-    console.log(userName);
+  console.log(userName);
 })();
 
 /*
