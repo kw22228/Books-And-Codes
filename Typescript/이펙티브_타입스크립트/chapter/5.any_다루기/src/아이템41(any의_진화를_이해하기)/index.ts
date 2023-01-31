@@ -1,87 +1,87 @@
 (function () {
-    function range(start, limit) {
-        const out = [];
-        for (let i = start; i < limit; i++) {
-            out.push(i);
-        }
-        return out;
+  function range(start, limit) {
+    const out = [];
+    for (let i = start; i < limit; i++) {
+      out.push(i);
     }
+    return out;
+  }
 
-    function rangeWithType(start: number, limit: number) {
-        const out = [];
-        for (let i = start; i < limit; i++) {
-            out.push(i);
-        }
-        return out; //반환 타입이 number[] 로 추론됨.  (any -> number로 진화함)
+  function rangeWithType(start: number, limit: number) {
+    const out = [];
+    for (let i = start; i < limit; i++) {
+      out.push(i);
     }
+    return out; //반환 타입이 number[] 로 추론됨.  (any -> number로 진화함)
+  }
 
-    //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
 
-    const result = []; // any[]
-    result.push('a');
-    result; // string[] 진화1
-    result.push(1);
-    result; // (string|number)[] 진화2
+  const result = []; // any[]
+  result.push('a');
+  result; // string[] 진화1
+  result.push(1);
+  result; // (string|number)[] 진화2
 
-    function conditionEvaluate() {
-        let val; // any
-        if (Math.random() < 0.5) {
-            val = /hello/;
-            val; // Regexp 진화.
-        } else {
-            val = 12;
-            val; // number 진화.
-        }
-        val; // number | Regexp 로 진화
+  function conditionEvaluate() {
+    let val; // any
+    if (Math.random() < 0.5) {
+      val = /hello/;
+      val; // Regexp 진화.
+    } else {
+      val = 12;
+      val; // number 진화.
     }
+    val; // number | Regexp 로 진화
+  }
 
-    function tryCatchEvaluate() {
-        let val = null;
-        try {
-            somethingDangerous();
-            val = 12;
-            val; // number 진화
-        } catch (e) {
-            console.warn('alas!');
-        }
-        val; // number | null
+  function tryCatchEvaluate() {
+    let val = null;
+    try {
+      somethingDangerous();
+      val = 12;
+      val; // number 진화
+    } catch (e) {
+      console.warn('alas!');
     }
+    val; // number | null
+  }
 
-    /** 선언적 any는 진화가 일어나지 않음. (암묵적 any + noImplicitAny속성이 설정된 상태여야 진화가능) */
-    function anyEvaluate() {
-        let val: any;
-        if (Math.random() < 0.5) {
-            val = /hello/;
-            val; // any
-        } else {
-            val = 12;
-            val; // any
-        }
-        val; // any
+  /** 선언적 any는 진화가 일어나지 않음. (암묵적 any + noImplicitAny속성이 설정된 상태여야 진화가능) */
+  function anyEvaluate() {
+    let val: any;
+    if (Math.random() < 0.5) {
+      val = /hello/;
+      val; // any
+    } else {
+      val = 12;
+      val; // any
     }
+    val; // any
+  }
 
-    ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
 
-    function range2(start: number, limit: number) {
-        const out = [];
-        if (start === limit) {
-            return out; // any타입에 어떠한 할당도 하지 않고 사용하려고 하면 암시적 any 오류가 발생한다.
-        }
-        for (let i = start; i < limit; i++) {
-            out.push(i);
-        }
-        return out;
+  function range2(start: number, limit: number) {
+    const out = [];
+    if (start === limit) {
+      return out; // any타입에 어떠한 할당도 하지 않고 사용하려고 하면 암시적 any 오류가 발생한다.
     }
-
-    function makeSquares(start: number, limit: number) {
-        const out = [];
-        /** 메소드안에 콜백 함수도 any를 진화시키지 않는다. */
-        range2(start, limit).forEach(i => {
-            out.push(i * i);
-        });
-
-        return out;
+    for (let i = start; i < limit; i++) {
+      out.push(i);
     }
+    return out;
+  }
+
+  function makeSquares(start: number, limit: number) {
+    const out = [];
+    /** 메소드안에 콜백 함수도 any를 진화시키지 않는다. */
+    range2(start, limit).forEach(i => {
+      out.push(i * i);
+    });
+
+    return out;
+  }
 })();
 
 /*

@@ -20,9 +20,9 @@ el.home = 'tree';
  * */
 export {};
 declare global {
-    interface Document {
-        monkey: string; //몽키 타입  (장점2. 장점4.)
-    }
+  interface Document {
+    monkey: string; //몽키 타입  (장점2. 장점4.)
+  }
 }
 
 document.monkey = 'Tamarin'; // 장점3. auto complete
@@ -30,7 +30,7 @@ document.mokey = 'Holer'; // 장점1.
 
 /** 더구체적인 타입 단언문 사용하기 */
 interface MonkeyDocument extends Document {
-    monkey: string;
+  monkey: string;
 }
 (document as MonkeyDocument).monkey = 'Macaque';
 

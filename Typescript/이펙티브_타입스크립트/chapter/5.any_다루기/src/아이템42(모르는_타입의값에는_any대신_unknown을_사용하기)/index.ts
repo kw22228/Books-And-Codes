@@ -6,68 +6,77 @@
 import { Geometry } from 'geojson';
 
 (function () {
-    /** 함수의 반환값과 관련된 unknown */
-    function parseYAML(yaml: string): any {
-        const line = yaml.split('\n');
+  /** 함수의 반환값과 관련된 unknown */
+  function parseYAML(yaml: string): any {
+    const line = yaml.split('\n');
 
-        const obj: { [key: string]: string } = {};
-        line.forEach(str => {
-            if (str.trim()) {
-                const [key, value] = str.split(':');
-                obj[key.trim()] = value.trim();
-            }
-        });
+    const obj: { [key: string]: string } = {};
+    line.forEach(str => {
+      if (str.trim()) {
+        const [key, value] = str.split(':');
+        obj[key.trim()] = value.trim();
+      }
+    });
 
-        return obj;
-    }
+    return obj;
+  }
 
-    interface Book {
-        name: string;
-        author: string;
-        title: string;
-    }
-    const book: Book = parseYAML(`
+  interface Book {
+    name: string;
+    author: string;
+    // title: string;
+  }
+  const book = parseYAML(`
         name: Wuthering Heights
         author: Emily Bronte
     `);
-    alert(book.title); // undefined나옴
-    // book('read');
+  console.log(book.title); // undefined나옴
+  book('read');
 
-    function safeParseYAML(yaml: string): unknown {
-        return parseYAML(yaml);
-    }
-    const safeBook = safeParseYAML(`
+  function isBook(val: unknown): val is Book {
+    return typeof val === 'object' && val !== null && 'name' in val && 'author' in val;
+  }
+  function safeParseYAML(yaml: string): unknown {
+    const val = parseYAML(yaml);
+    return val;
+  }
+
+  const safeBook = safeParseYAML(`
         name: Wuthering Heights
         author: Emily Bronte
     `);
-    alert(safeBook.title);
 
-    /** 변수선언과 관련된 unknown (어떤 값이 있지만 그 타입을 모르는경우에 unknown을 사용) */
-    interface Feature {
-        id?: string | number;
-        geometry: Geometry;
-        properties: unknown;
-    }
+  if (isBook(safeBook)) {
+    console.log(safeBook.name);
+    console.log(safeBook.title);
+  }
 
-    function processValue(val: unknown) {
-        // instanceof를 통해 원하는 타입으로 변환 (unknown -> Date)
-        if (val instanceof Date) {
-            val;
-        }
-    }
+  /** 변수선언과 관련된 unknown (어떤 값이 있지만 그 타입을 모르는경우에 unknown을 사용) */
+  interface Feature {
+    id?: string | number;
+    geometry: Geometry;
+    properties: unknown;
+  }
 
-    function isBook(val: unknown): val is Book {
-        return typeof val === 'object' && val !== null && 'name' in val && 'author' in val;
+  function processValue(val: unknown) {
+    // instanceof를 통해 원하는 타입으로 변환 (unknown -> Date)
+    if (val instanceof Date) {
+      val;
     }
-    function processValueWithBook(val: unknown) {
-        if (isBook(val)) {
-            val; // Book
-        }
-    }
+  }
 
-    function safeParseYAMLWithUnknown<T>(yaml: string): T {
-        return parseYAML(yaml);
+  //   function isBook(val: unknown): val is Book {
+  //     return typeof val === 'object' && val !== null && 'name' in val && 'author' in val;
+  //   }
+  function processValueWithBook(val: unknown) {
+    if (isBook(val)) {
+      val; // Book
     }
+  }
+
+  function safeParseYAMLWithUnknown<T>(yaml: string): T {
+    return parseYAML(yaml);
+  }
 })();
 
 /*
