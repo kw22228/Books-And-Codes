@@ -1,0 +1,3 @@
+namespace fooNamespace {
+  function bar() {}
+}
