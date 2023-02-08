@@ -12,6 +12,7 @@
     "devDependencies": {
         "@types/express": "^4.17.15",
         "@types/geojson": "^7946.0.10",
+        "@types/jquery": "^3.5.16",
         "@types/lodash": "^4.14.191",
         "@types/node": "^18.11.19",
         "type-coverage": "^2.24.1",
