@@ -20,3 +20,40 @@ $('#graph').css({ width: '100px', height: '100px' }); // 정상
 /** DOM문제 */
 const ageEl = document.getElementById('age');
 ageEl.value = '12';
+
+/** JSDoc */
+const ageEl2 = /** @type {HTMLInputElement} */ (document.getElementById('age'));
+ageEl2.value = '12';
+
+/** 부정확한 JSDoc */
+/**
+ * 엘리먼트의 크기(픽셀 단위)를 가져온다.
+ * @param {Element} el 해당 엘리먼트
+ * @returns {{width: number, height: number}} 크기
+ */
+function getSize(el) {
+  const bounds = el.getBoundingClientRect();
+
+  return {
+    width: bounds.width,
+    height: bounds.height,
+  };
+}
+
+/**
+ * @param {number} val
+ */
+function doubleWithJSDoc(val) {
+  return 2 * val;
+}
+
+/**
+ * @param {{
+ *  files: { forEach: (arg0: (file: any) => Promise<void>) => void; }
+ * }} data
+ */
+function loadData(data) {
+  data.files.forEach(async file => {
+    // ...
+  });
+}
