@@ -159,4 +159,168 @@ class ReportCard implements Graded, Reporter {
   }
 }
 
+/** 할당 가능성 확장 */
+class Lesson {
+  subject: string;
+
+  constructor(subject: string) {
+    this.subject = subject;
+  }
+}
+class OnlineLesson extends Lesson {
+  url: string;
+
+  constructor(subject: string, url: string) {
+    super(subject);
+    this.url = url;
+  }
+}
+
+let lesson: Lesson;
+lesson = new Lesson('coding');
+lesson = new OnlineLesson('coding', 'mk.co.kr');
+
+let online: OnlineLesson;
+online = new OnlineLesson('conding', 'mk.co.kr');
+online = new Lesson('coding');
+
+//////////////////////////////
+
+class PastGrades {
+  grades: number[] = [];
+}
+class LabeledPastGrades extends PastGrades {
+  label?: string;
+}
+
+// 하위 클래스의 필드값이 optional이라서 상위클래스를 가져와도 오류나지 않는다.
+let subClass: LabeledPastGrades;
+subClass = new LabeledPastGrades();
+subClass = new PastGrades();
+
+///////////////////////////////
+
+class GradeAnnouncer {
+  message: string;
+
+  constructor(grade: number) {
+    this.message = grade >= 65 ? 'fail' : 'pass';
+  }
+}
+class PassingAnnouncer extends GradeAnnouncer {
+  constructor() {
+    super(100);
+  }
+}
+class FailingAnnouncer extends GradeAnnouncer {}
+
+let passingAnnouncer: PassingAnnouncer = new PassingAnnouncer();
+let failingAnnouncer: FailingAnnouncer = new FailingAnnouncer(100);
+
+/** 재정의된 메서드 */
+class GradeCounter {
+  countGrades(grades: string[], letter: string) {
+    return grades.filter(grade => grade === letter).length;
+  }
+}
+class FailureCounter extends GradeCounter {
+  countGrades(grades: string[], letter: string) {
+    return super.countGrades(grades, letter);
+  }
+}
+class AnyFailureChecker extends GradeCounter {
+  countGrades(grades: string[]) {
+    return super.countGrades(grades, 'f') !== 0;
+  }
+}
+const counter: GradeCounter = new AnyFailureChecker();
+
+/** 재정의된 속성 */
+class Assignment {
+  grade?: number;
+}
+class GradedAssignment extends Assignment {
+  grade: number;
+  constructor(grade: number) {
+    super();
+    this.grade = grade;
+  }
+}
+
+/////////////////////////////////
+
+class NumericGrade {
+  value = 0;
+}
+class VagueGrade extends NumericGrade {
+  value = Math.random() > 0.5 ? 1 : '...';
+}
+
+const instance2: NumericGrade = new VagueGrade();
+
+/** 추상 클래스 (abstract) */
+abstract class School {
+  readonly name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  abstract getStudentTypes(): string[];
+}
+class Preschool extends School {
+  getStudentTypes() {
+    return ['12'];
+  }
+}
+class Absence extends School {}
+
+let school: School;
+school = new Preschool('jw');
+school = new School('jw'); // 추상클래스 인스턴스 만들 수 없음.
+
+/** 클래스의 접근 제어자 */
+class Base {
+  isPublicImplicit = 0;
+  public isPublicExplicit = 1;
+  protected isProtected = 2;
+  private isPrivate = 3;
+  #truePrivate = 4;
+}
+class SubClass extends Base {
+  examples() {
+    this.isPublicImplicit;
+    this.isPublicExplicit;
+    this.isProtected;
+
+    this.isPrivate;
+
+    this.#truePrivate;
+  }
+}
+
+const sub = new SubClass();
+sub.isPublicImplicit;
+sub.isPublicExplicit;
+sub.isProtected;
+sub.isPrivate;
+sub.#truePrivate;
+
+/** 정적 필드 제한자 (static) */
+class Question {
+  protected static readonly answer: 'bash';
+  protected static readonly prompt = "what's an ogres";
+
+  guess(getAnswer: (prompt: string) => string) {
+    const answer = getAnswer(Question.prompt);
+
+    if (answer === Question.answer) {
+      console.log('you got it');
+    } else {
+      console.log('try again');
+    }
+  }
+}
+Question.answer;
+
 export {};
