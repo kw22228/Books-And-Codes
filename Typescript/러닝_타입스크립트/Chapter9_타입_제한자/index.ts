@@ -109,4 +109,92 @@ function logRating(key: keyof typeof ratings2) {
 }
 logRating('imdb');
 logRating('invalid'); // ratings2의 key가 아니라서 오류.
+
+/** 타입 단언 */
+const rawData = '["grace", "frankie"]';
+const parse1 = JSON.parse(rawData);
+const parse2 = JSON.parse(rawData) as string[];
+const parse3 = JSON.parse(rawData) as [string, string];
+const parse4 = JSON.parse(rawData) as ['grace', 'frankie'];
+
+let maybeDate = Math.random() > 0.5 ? undefined : new Date();
+const maybe1 = maybeDate as Date;
+const maybe2 = maybeDate!;
+
+/** 타입단언 주의사항 */
+const seasonCounts = new Map([
+  ['braod city', 5],
+  ['coummunity', 6],
+]);
+const knownValue = seasonCounts.get('I love Lucy'); // undefined
+knownValue.toString(); // 오류 undefined
+
+/** 타입 단언 vs 타입 선언 */
+interface Entertainer {
+  acts: string[];
+  name: string;
+}
+const declared: Entertainer = {
+  name: 'moms mabley',
+};
+const asserted = {
+  name: 'moms mabley',
+} as Entertainer;
+
+/** const 단언문 */
+const c = [0, ''];
+const c1 = [0, ''] as const;
+
+const getName = () => 'maria bamford';
+const getNameWithConst = () => 'maria bamford' as const;
+
+/** 리터럴에서 원시 타입으로 */
+interface Joke {
+  quote: string;
+  style: 'story' | 'one-liner';
+}
+function tellJoke(joke: Joke) {
+  if (joke.style === 'one-liner') {
+    console.log(joke.quote);
+  } else {
+    console.log(joke.quote.split('\n'));
+  }
+}
+const narrowJoke = {
+  quote: 'if you stay alive for no ...',
+  style: 'one-liner' as const,
+};
+tellJoke(narrowJoke); //정상
+
+const wideObject = {
+  quote: 'time files when you',
+  style: 'one-liner',
+};
+tellJoke(wideObject);
+
+/** 읽기 전용 객체 */
+function describePreference(preference: 'maybe' | 'no' | 'yes') {
+  switch (preference) {
+    case 'maybe':
+      return 'maybe';
+    case 'no':
+      return 'no';
+    case 'yes':
+      return 'yes';
+  }
+}
+const preferenceMutable = {
+  movie: 'maby',
+  standup: 'yes',
+};
+describePreference(preferenceMutable.movie);
+preferenceMutable.movie = 'no';
+
+const preferenceReadonly = {
+  movie: 'maybe',
+  standup: 'yes',
+} as const;
+describePreference(preferenceReadonly.movie);
+preferenceReadonly.movie = 'no';
+
 export {};
