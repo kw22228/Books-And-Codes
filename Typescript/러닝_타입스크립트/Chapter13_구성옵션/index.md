@@ -72,3 +72,14 @@
       - strictPropertyInitialization: 클래스의 프로퍼티 초기화를 강제한다.
 
       - useUnknownInCatchVariables: 모든 try catch문에서 오류는 안전하지않은 any타입을 제공하는데 unknown타입으로 강제할 수 있게 한다.
+
+  - 모듈
+
+    - module: ESNext, CommonJS 등.. 어떤 모듈을 사용하여 import나 export해올것인지 정함
+
+    - moduleResolution: import에서 가져온 경로가 module에 매핑됨.
+      node -> Node.js와 같은 CommonJS 리졸버에서 사용하는 도앚ㄱ
+      nodenext -> ECMA스크립트 모듈에 대해 지정된 동작에 맞게 조정
+      근데 두개의 옵션은 별 차이없다고함.
+
+    - esModuleInterop: commonJS로 export된 모듈을 import로 가져오려고할 때 활성화하면 오류가 나지않는다.
