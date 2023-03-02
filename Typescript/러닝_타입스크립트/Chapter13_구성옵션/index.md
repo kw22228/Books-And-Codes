@@ -83,3 +83,39 @@
       근데 두개의 옵션은 별 차이없다고함.
 
     - esModuleInterop: commonJS로 export된 모듈을 import로 가져오려고할 때 활성화하면 오류가 나지않는다.
+
+    - allowSyntheticDefaultImports: es6모듈의 default로 만들어진 모듈을 commonJS의 default로 가져올수 있게한다.
+
+    - isolatedModules: 활성화시 모듈을 default로 export할수 없게된다.
+
+  - 자바스크립트
+
+    - allowJS: js파일을 import하여 값을 가져올수 있다.
+
+    - checkJS: allowJS가 true로 기본값을 가지며, .js .jsx파일도 타입체크한다.
+      @ts-check를 사용하는것과 같음
+      그리고 JSDoc의 타입체크를 지원한다.
+
+  - 구성확장
+
+    - extends: 다른 tsConfig파일을 확장할 수 있다.
+      ex) "extends": "./tsconfig.base.json"
+
+  - 프로젝트 레퍼런스
+
+    - 프로젝트 레퍼런스가 TSConfig 보다 좋은점
+
+      - 특정 코드 영역에 대해 다른 컴파일러 옵션을 지정할 수 있다.
+      - 타입스크립트는 개별 프로젝트에 대한 빌드 출력을 캐시할 수 있으므로, 종종 대규모 프로젝트의 빌드 시간이 훨씬 빨라진다.
+      - 프로젝트 레퍼런스는 코드의 개별 영역을 구조화하는데 유용한 의존성 트리를 실행한다.
+
+    - composite: 파일 시스템 입력과 출력이 제약 조건을 준수함을 나타낸다.
+
+      - rootDir 설정이 아직 명시적으로 설정되지 않았다면 기본적으로 TSConfig파일이 포함된 디렉터리로 설정된다.
+      - 모든 구현 파일은 포함된 패턴과 일치하거나 파일 배열에 나열되어야 한다.
+      - declaration 옵션은 반드시 true이여야 한다.
+
+    - references: 다른 폴더에있는 타입 정의 파일을 사용할 수 있도록 명시적으로 선언해준다.
+      ex) "references": [
+      { "path": "../lib" }
+      ]
