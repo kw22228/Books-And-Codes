@@ -1,0 +1,15 @@
+{
+  "__comment__": "이 json파일은 공연할 연극 정보이다.",
+  "hamlet": {
+    "name": "Hamlet",
+    "type": "tragedy"
+  },
+  "as-like": {
+    "name": "As You Like It",
+    "type": "comedy"
+  },
+  "othello": {
+    "name": "Othello",
+    "type": "tragedy"
+  }
+}
