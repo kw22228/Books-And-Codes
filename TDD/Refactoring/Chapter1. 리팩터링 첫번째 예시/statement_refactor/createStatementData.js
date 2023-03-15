@@ -1,3 +1,5 @@
+import createPerformanceCalculator from './factory/createPerformanceCalculator';
+
 function createStatementData(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
@@ -8,48 +10,18 @@ function createStatementData(invoice, plays) {
   return statementData;
 
   function enrichPerformance(aPerformance) {
+    // const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance)); // 공연료 계산기 생성
+    const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance)); // 생성자 대신 팩토리 함수 이용
+
     const result = Object.assign({}, aPerformance); // Shallow copy.
-    result.play = playFor(result);
-    result.amount = amountFor(result);
-    result.volumeCredits = volumeCreditsFor(result);
+    result.play = calculator.play;
+    result.amount = calculator.amount;
+    result.volumeCredits = calculator.volumeCredits;
     return result;
   }
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
   }
-  function amountFor(aPerformance) {
-    let result = 0; //  thisAmount -> result 더 명확한 이름으로 변경
-
-    //play -> playFor(aPerformance) 임시변수를 질의 함수로 변경후 변수 인라인하기
-    switch (aPerformance.play.type) {
-      case 'tragedy':
-        result = 40000;
-        if (aPerformance.audience > 30) {
-          result += 1000 * (aPerformance.audience - 30);
-        }
-        break;
-      case 'comedy':
-        result = 30000;
-        if (aPerformance.audience > 20) {
-          result += 10000 + 500 * (aPerformance.audience - 20);
-        }
-        result += 300 * aPerformance.audience;
-        break;
-      default:
-        throw new Error(`알 수 없는 장르: ${aPerformance.play.type}`);
-    }
-
-    return result;
-  }
-  function volumeCreditsFor(aPerformance) {
-    let result = 0;
-
-    result += Math.max(aPerformance.audience - 30, 0);
-    if (aPerformance.play.type === 'comedy') result += Math.floor(aPerformance.audience / 5);
-
-    return result;
-  }
-
   function totalAmount(data) {
     return data.performances.reduce((total, p) => total + p.amount, 0);
   }
