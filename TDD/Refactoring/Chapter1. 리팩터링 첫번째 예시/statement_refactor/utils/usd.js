@@ -1,4 +1,3 @@
-/** number Formatter 함수 (USD currency) */
 function usd(aNumber) {
   const options = {
     style: 'currency',
