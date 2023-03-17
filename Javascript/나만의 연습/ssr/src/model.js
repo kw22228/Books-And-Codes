@@ -13,4 +13,7 @@ export const model = {
   deleteTodoItme(index) {
     this.todoItems.splice(index, 1);
   },
+  init(initialModel) {
+    this.todoItems = initialModel.todoItems;
+  },
 };

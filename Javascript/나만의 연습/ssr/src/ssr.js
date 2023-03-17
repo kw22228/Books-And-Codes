@@ -1,6 +1,6 @@
-import { Button, TodoList } from './components.js';
+import { App } from './components.js';
 
-export const generateHtml = model => /* html */ `
+export const generateHtml = ({ todoItems }) => /* html */ `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,27 +11,10 @@ export const generateHtml = model => /* html */ `
     </head>
     <body>
         <div id="app">
-            ${Button({ id: 'add', text: '추가' })}
-            ${Button({ id: 'delete', text: '삭제' })}
-            ${TodoList(model.todoItems)}
+            ${App(todoItems)}
         </div>
-        <script>
-            document.querySelector('#add').onclick = () => {
-                fetch('/api/todo-items', {
-                    method: 'post',
-                    body: JSON.stringify({content: '추가된 아이템'}),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                }).then(() => location.reload())
-            }
-
-            document.querySelector('#delete').onclick = () => {
-                fetch('/api/todo-items/0', {
-                    method: 'delete'
-                }).then(() => location.reload())
-            }
-        </script>
+        <script>window.__INITIAL_MODEL__ = ${JSON.stringify({ todoItems })}</script>
+        <script src="./src/main.js" type="module"></script>
     </body>
     </html>
 `;
