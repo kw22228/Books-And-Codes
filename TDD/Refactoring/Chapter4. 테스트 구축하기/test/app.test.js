@@ -30,6 +30,12 @@ describe('province', () => {
     expect(asia.profit).equal(0);
   });
 
+  it('nagative demand', () => {
+    asia.demand = -1;
+    expect(asia.shortfail).to.equal(-26);
+    expect(asia.profit).to.equal(-10);
+  });
+
   it('empty string demand', () => {
     asia.demand = '';
     expect(asia.shortfail).NaN;
