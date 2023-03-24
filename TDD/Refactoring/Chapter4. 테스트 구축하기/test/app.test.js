@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import assert from 'assert';
 
 import Province from '../Province';
 import sampleProvinceData from '../sampleProvinceData';
@@ -11,7 +12,8 @@ describe('province', () => {
   });
 
   it('shortfail', () => {
-    expect(asia.shortfail).equal(5);
+    // expect(asia.shortfail).equal(7);
+    assert.equal(asia.shortfail, 5);
   });
 
   it('profit', () => {
