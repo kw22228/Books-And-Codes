@@ -61,5 +61,4 @@ const newEnglanders = someCustomers.filter(c => inNewEngland(c));
 function inNewEnglandRefactor(stateCode) {
   return ['MA', 'CT', 'ME', 'VI', 'NH', 'RI'].includes(stateCode);
 }
-
 const newEnglandersRefactore = someCustomers.filter(c => inNewEnglandRefactor(c.adress.state));
