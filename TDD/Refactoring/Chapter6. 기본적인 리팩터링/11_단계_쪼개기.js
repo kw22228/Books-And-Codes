@@ -27,7 +27,7 @@ function priceOrder(product, quantity, shippingMethod) {
 
 ////////////////// 리팩터링 //////////////////
 
-/** 1. 코드를 2단계로 나누기 */
+/** 1. 코드를 2단계로 나누기 ( 상품 가격 구하기 -> 배송비 + 상품가격 -> 반환 )*/
 // 상품가격에 대한 함수
 function priceOrderRefactor(product, quantity, shippingMethod) {
   /** 2. 중간 데이터 구조 생성 (price에 대한) */
