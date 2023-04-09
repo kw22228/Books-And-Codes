@@ -32,7 +32,7 @@ function someFuncRefactor(people) {
 
   //각 반복문 함수로 추출
   function youngestAge() {
-    return Math.min(...people.map((p) => p.age));
+    return Math.min(...people.map(p => p.age));
   }
   function totalSalary() {
     return people.reduce((total, p) => total + p.salary, 0);
