@@ -1,5 +1,9 @@
+function sqrt(x) {
+  return sqrt_iter(1, x);
+}
+
 function sqrt_iter(guess, x) {
-  //   return is_good_enough(guess, x) ? guess : sqrt_iter(improve(guess, x), x);
+  // return is_good_enough(guess, x) ? guess : sqrt_iter(improve(guess, x), x);
   return conditional(is_good_enough(guess, x), guess, sqrt_iter(improve(guess, x), x));
 }
 
@@ -17,10 +21,6 @@ function square(n) {
 
 function is_good_enough(guess, x) {
   return Math.abs(square(guess) - x) < 0.001;
-}
-
-function sqrt(x) {
-  return sqrt_iter(1, x);
 }
 
 function conditional(predicate, then_clause, else_clause) {
