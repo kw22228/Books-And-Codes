@@ -51,7 +51,7 @@ function fib_iter(a, b, count) {
   return count === 0 ? b : fib_iter(a + b, a, count - 1);
 }
 
-/////////////////////////////
+///////////////////////////// 잔돈 만들기
 function count_change(amount) {
   return cc(amount, 5);
 }
@@ -76,3 +76,21 @@ function first_denomination(kinds_of_coins) {
     ? 50
     : 0;
 }
+
+console.log(count_change(100));
+
+////////////////////////////////////////////////////////////////////////
+/** 거듭제곱 */
+function expt(b, n) {
+  return n === 0 ? 1 : b * expt(b, n - 1);
+}
+
+function expt_iter(b, n) {
+  function iter(b, n, result) {
+    return n === 0 ? result : iter(b, n - 1, b * result);
+  }
+
+  return iter(b, n, 1);
+}
+
+console.log(expt_iter(3, 2));

@@ -1,11 +1,7 @@
+/** 애커먼 함수를 이용하자 */
 function A(x, y) {
-  return y === 0 //
-    ? 0
-    : x === 0
-    ? 2 * y
-    : y === 1
-    ? 2
-    : A(x - 1, A(x, y - 1));
+  if (y === 0) return 0;
+  else if (x === 0) return 2 * y;
+  else if (y === 1) return 2;
+  else return A(x - 1, A(x, y - 1));
 }
-
-A(1, 10);
