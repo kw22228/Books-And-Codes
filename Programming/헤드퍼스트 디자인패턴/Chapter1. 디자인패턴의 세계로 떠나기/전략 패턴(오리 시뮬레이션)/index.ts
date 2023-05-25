@@ -1,12 +1,16 @@
+interface QuackBehavior {
+  quack(): string;
+}
+
 class Duck {
-  #quackBehavior;
-  constructor() {}
+  private _quackBehavior: QuackBehavior;
   get quackBehavior() {
-    return this.#quackBehavior;
+    return this._quackBehavior;
   }
   set quackBehavior(behavior) {
-    this.#quackBehavior = behavior;
+    this._quackBehavior = behavior;
   }
+
   display() {
     return '그냥 오리처럼 생김';
   }
@@ -16,12 +20,12 @@ class Duck {
   }
 }
 
-class QauckAble {
+class QauckAble implements QuackBehavior {
   quack() {
     return '꽥꽥';
   }
 }
-class QuackUnable {
+class QuackUnable implements QuackBehavior {
   quack() {
     return '아무 소리도 안나와';
   }
@@ -57,5 +61,3 @@ console.log(duck1.quack());
 // const duck2 = new RedheadDuck();
 // console.log(duck2.display());
 // console.log(duck2.quack());
-
-export {};
