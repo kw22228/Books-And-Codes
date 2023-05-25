@@ -7,7 +7,7 @@ abstract class Duck {
   get quackBehavior() {
     return this._quackBehavior;
   }
-  set quackBehavior(behavior) {
+  set quackBehavior(behavior: QuackBehavior) {
     this._quackBehavior = behavior;
   }
 
