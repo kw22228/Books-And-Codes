@@ -2,7 +2,7 @@ interface QuackBehavior {
   quack(): string;
 }
 
-class Duck {
+abstract class Duck {
   private _quackBehavior: QuackBehavior;
   get quackBehavior() {
     return this._quackBehavior;
@@ -11,9 +11,7 @@ class Duck {
     this._quackBehavior = behavior;
   }
 
-  display() {
-    return '그냥 오리처럼 생김';
-  }
+  abstract display(): string;
   quack() {
     if (!this.quackBehavior) return '';
     return this.quackBehavior.quack();
@@ -50,6 +48,9 @@ class RedheadDuck extends Duck {
     super();
     this.quackBehavior = new QuackUnable();
   }
+  display() {
+    return '빨간 모자 오리다!!';
+  }
 }
 
 const duck1 = new MallardDuck();
@@ -58,6 +59,19 @@ console.log(duck1.quack());
 duck1.brokenNeck();
 console.log(duck1.quack());
 
-// const duck2 = new RedheadDuck();
-// console.log(duck2.display());
-// console.log(duck2.quack());
+const duck2 = new RedheadDuck();
+console.log(duck2.display());
+console.log(duck2.quack());
+
+class DuckDevice {
+  private quackBehavior: QauckAble;
+  constructor() {
+    this.quackBehavior = new QauckAble();
+  }
+  quack() {
+    return this.quackBehavior.quack();
+  }
+}
+
+const duckDevice = new DuckDevice();
+console.log(duckDevice.quack());
