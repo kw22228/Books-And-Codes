@@ -26,3 +26,5 @@ class WeatherData {
     forecastDisplay.update(temperature, humidity, pressure);
   }
 }
+
+export {};

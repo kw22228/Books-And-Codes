@@ -25,3 +25,5 @@ class ConcreteObserver implements IObserver {
 
   //기타 옵저버용 메소드
 }
+
+export {};
