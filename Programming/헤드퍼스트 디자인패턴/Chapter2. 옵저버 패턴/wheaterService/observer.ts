@@ -108,3 +108,5 @@ const weatherData = new WeatherData();
 const currentConditionsDisplay = new CurrentConditionsDisplay(weatherData);
 const forecastDisplay = new ForecastDisplay(weatherData);
 weatherData.setMessurements(80, 65, 30.4);
+
+export {};
