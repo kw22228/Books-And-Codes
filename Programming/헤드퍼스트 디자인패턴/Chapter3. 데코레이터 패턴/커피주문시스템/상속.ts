@@ -68,3 +68,5 @@ class Espresso extends Beverage {
 
 const decaf = new Decaf();
 console.log(decaf.toString());
+
+export {};
