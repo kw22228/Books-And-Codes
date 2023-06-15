@@ -1,4 +1,16 @@
 class Pizza {
+  protected _name: string;
+  protected _dough: string;
+  protected _sauce: string;
+  protected _toppings: string[];
+
+  constructor() {
+    this._toppings = [];
+  }
+  get name() {
+    return this._name;
+  }
+
   prepare() {
     return '준비한다.';
   }

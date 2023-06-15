@@ -2,6 +2,8 @@ import Pizza from './core/Pizza';
 import { CheesePizza, ClamPizza, PepperoniPizza, VeggiePizza } from './sub';
 
 abstract class PizzaStore {
+  abstract createPizza(type: string): Pizza;
+
   orderPizza(type: string) {
     const pizza = this.createPizza(type);
 
@@ -12,8 +14,6 @@ abstract class PizzaStore {
 
     return pizza;
   }
-
-  abstract createPizza(type: string): Pizza;
 }
 
 class NYPizzaStore extends PizzaStore {
@@ -50,3 +50,7 @@ class ChicagoPizzaStore extends PizzaStore {
     }
   }
 }
+
+const nyPizzaStore = new NYPizzaStore();
+const nyPizza = nyPizzaStore.orderPizza('cheese');
+console.log(nyPizza.name);
