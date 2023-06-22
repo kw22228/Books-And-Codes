@@ -2,6 +2,7 @@ export const RemoteControlKey = {
   Light: 'light',
   Stereo: 'stereo',
   CeilingFan: 'ceilingFan',
+  Macro: 'macro',
 } as const;
 
 export const CeilingFanSpeed = {
