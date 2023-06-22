@@ -1,6 +1,4 @@
-import NoCommand from '../command/NoCommand';
-import { ICommand } from '../interface/index';
-import { TRemoteControlKey } from '../util/constant';
+import { ICommand, TRemoteControlKey } from '../interface';
 
 class RemoteControl {
   onCommands: Map<string, ICommand>;

@@ -1,5 +1,12 @@
 export const RemoteControlKey = {
   Light: 'light',
   Stereo: 'stereo',
+  CeilingFan: 'ceilingFan',
 } as const;
-export type TRemoteControlKey = (typeof RemoteControlKey)[keyof typeof RemoteControlKey];
+
+export const CeilingFanSpeed = {
+  HIGH: 3,
+  MEDIUM: 2,
+  LOW: 1,
+  OFF: 0,
+} as const;
