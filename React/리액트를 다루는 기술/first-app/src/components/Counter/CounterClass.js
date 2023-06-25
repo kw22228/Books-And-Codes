@@ -24,7 +24,13 @@ class CounterClass extends Component {
             // this.setState({ number: number + 1 });
             // this.setState({ number: this.state.number + 1 });
             this.setState((prev) => ({ number: prev.number + 1 }));
-            this.setState((prev) => ({ number: prev.number + 1 }));
+            this.setState(
+              (prev) => ({ number: prev.number + 1 }),
+              () => {
+                console.log('방금 state가 호출되엇습니다.');
+                console.log(this.state);
+              }
+            );
           }}
         >
           +1

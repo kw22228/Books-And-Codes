@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppClass from './AppClass';
+import Say from './components/Say/Say';
+import EventPracticeClass from './components/EventPractice/EventPracticeClass';
+import EventPractice from './components/EventPractice/EventPractice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppClass />
+    {/* <AppClass /> */}
+    {/* <Say /> */}
+    {/* <EventPracticeClass /> */}
+    <EventPractice />
   </React.StrictMode>
 );
 
