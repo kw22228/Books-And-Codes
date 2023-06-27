@@ -7,6 +7,10 @@ import AppClass from './AppClass';
 import Say from './components/Say/Say';
 import EventPracticeClass from './components/EventPractice/EventPracticeClass';
 import EventPractice from './components/EventPractice/EventPractice';
+import EventPracticeForm from './components/EventPractice/EventPracticeForm';
+import ValidationSampleClass from './components/Validation/ValidationSampleClass';
+import RefSample from './components/ref/RefSample';
+import ScrollBoxClass from './components/ref/ScrollBoxClass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +18,10 @@ root.render(
     {/* <AppClass /> */}
     {/* <Say /> */}
     {/* <EventPracticeClass /> */}
-    <EventPractice />
+    {/* <EventPracticeForm /> */}
+    {/* <ValidationSampleClass /> */}
+    {/* <RefSample /> */}
+    <ScrollBoxClass />
   </React.StrictMode>
 );
 
