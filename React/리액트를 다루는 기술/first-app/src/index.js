@@ -11,6 +11,7 @@ import EventPracticeForm from './components/EventPractice/EventPracticeForm';
 import ValidationSampleClass from './components/Validation/ValidationSampleClass';
 import RefSample from './components/ref/RefSample';
 import ScrollBoxClass from './components/ref/ScrollBoxClass';
+import IterationSample from './components/key/IterationSample';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,7 +22,8 @@ root.render(
     {/* <EventPracticeForm /> */}
     {/* <ValidationSampleClass /> */}
     {/* <RefSample /> */}
-    <ScrollBoxClass />
+    {/* <ScrollBoxClass /> */}
+    <IterationSample />
   </React.StrictMode>
 );
 
