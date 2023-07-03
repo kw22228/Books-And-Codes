@@ -12,19 +12,23 @@ import ValidationSampleClass from './components/Validation/ValidationSampleClass
 import RefSample from './components/ref/RefSample';
 import ScrollBoxClass from './components/ref/ScrollBoxClass';
 import IterationSample from './components/key/IterationSample';
+import LifeCycleSample from './components/LifeCycle/LifeCycleSample';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    {/* <AppClass /> */}
+  <>
+    {/* <React.StrictMode> */}
+    <AppClass />
     {/* <Say /> */}
     {/* <EventPracticeClass /> */}
     {/* <EventPracticeForm /> */}
     {/* <ValidationSampleClass /> */}
     {/* <RefSample /> */}
     {/* <ScrollBoxClass /> */}
-    <IterationSample />
-  </React.StrictMode>
+    {/* <IterationSample /> */}
+    {/* <LifeCycleSample /> */}
+    {/* </React.StrictMode> */}
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
