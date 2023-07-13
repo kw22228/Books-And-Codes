@@ -1,20 +1,22 @@
-import IIterator from '../반복자 패턴/Iterator';
-import DinnerMenu from './DinnerMenu';
-import PancakeHouseMenu from './PancakeHouseMenu';
+import IIterator from '../반복자 패턴/interface/Iterator';
+import IMenu from '../반복자 패턴/interface/Menu';
+import MenuItem from './MenuItem';
 
 class Waitress {
-  pancakeHouseMenu: PancakeHouseMenu;
-  dinnerMenu: DinnerMenu;
+  menus: IMenu[];
 
-  constructor(pancakeHouseMenu: PancakeHouseMenu, dinnerMenu: DinnerMenu) {
-    const pancakeIterator = pancakeHouseMenu.createIterator();
-    const dinnerIterator = dinnerMenu.createIterator();
+  constructor(menus: IMenu[]) {
+    this.menus = menus;
 
-    this.printMenu(pancakeIterator);
-    this.printMenu(dinnerIterator);
+    // this.printMenu(pancakeIterator);
+    // this.printMenu(dinnerIterator);
   }
 
-  private printMenu(iterator: IIterator) {
+  printMenus() {
+    const menuIterator = this.menus.map((menu) => menu.createIterator());
+  }
+
+  private printMenu(iterator: IIterator<MenuItem>) {
     while (iterator.hasNext()) {
       const menuItem = iterator.next();
       console.log(menuItem.name);

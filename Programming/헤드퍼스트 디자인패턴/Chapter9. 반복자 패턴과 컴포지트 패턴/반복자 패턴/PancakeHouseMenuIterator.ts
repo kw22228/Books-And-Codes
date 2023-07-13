@@ -1,7 +1,7 @@
 import MenuItem from '../식당/MenuItem';
-import IIterator from './Iterator';
+import IIterator from './interface/Iterator';
 
-class PancakeHouseMenuIterator implements IIterator {
+class PancakeHouseMenuIterator implements IIterator<MenuItem> {
   items: MenuItem[];
   position = 0;
 

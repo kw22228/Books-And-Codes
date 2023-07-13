@@ -1,4 +1,3 @@
-import IIterator from '../반복자 패턴/Iterator';
 import PancakeHouseMenuIterator from '../반복자 패턴/PancakeHouseMenuIterator';
 import MenuItem from './MenuItem';
 
@@ -27,7 +26,7 @@ class PancakeHouseMenu {
     return this._menuItems;
   }
 
-  createIterator(): IIterator {
+  createIterator() {
     return new PancakeHouseMenuIterator(this.menuItems);
   }
 }

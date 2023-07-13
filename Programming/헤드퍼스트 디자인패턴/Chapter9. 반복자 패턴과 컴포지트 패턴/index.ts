@@ -18,4 +18,4 @@ import Waitress from './식당/Waitress';
 const pancakeHouseMenu = new PancakeHouseMenu();
 const dinnerMenu = new DinnerMenu();
 
-const waitress = new Waitress(pancakeHouseMenu, dinnerMenu);
+// const waitress = new Waitress(pancakeHouseMenu, dinnerMenu);

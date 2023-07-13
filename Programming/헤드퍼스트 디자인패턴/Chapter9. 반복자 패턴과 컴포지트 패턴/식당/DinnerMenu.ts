@@ -1,6 +1,6 @@
 import MenuItem from './MenuItem';
 import DinnerMenuIterator from '../반복자 패턴/DinnerMenuIterator';
-import IIterator from '../반복자 패턴/Iterator';
+import IIterator from '../반복자 패턴/interface/Iterator';
 
 class DinnerMenu {
   static MAX_ITEMS = 6;
@@ -25,7 +25,7 @@ class DinnerMenu {
     return this._menuItems;
   }
 
-  createIterator(): IIterator {
+  createIterator(): IIterator<MenuItem> {
     return new DinnerMenuIterator(this.menuItems);
   }
 }
