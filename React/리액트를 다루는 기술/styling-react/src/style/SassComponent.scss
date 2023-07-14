@@ -1,0 +1,47 @@
+@import './utils.scss';
+
+.SassComponent {
+  display: flex;
+  flex-direction: column;
+
+  .box {
+    margin-bottom: 10px;
+    background: red;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+
+    // .red 클래스가 .box와 함꼐 사용되었을 때
+    &.red {
+      background-color: $red;
+      @include square(1);
+    }
+    &.orange {
+      background-color: $orange;
+      @include square(2);
+    }
+    &.yellow {
+      background-color: $yellow;
+      @include square(3);
+    }
+    &.green {
+      background-color: $green;
+      @include square(4);
+    }
+    &.blue {
+      background-color: $blue;
+      @include square(5);
+    }
+    &.indigo {
+      background-color: $indigo;
+      @include square(6);
+    }
+    &.violet {
+      background-color: $violet;
+      @include square(7);
+    }
+
+    &:hover {
+      background-color: black;
+    }
+  }
+}
