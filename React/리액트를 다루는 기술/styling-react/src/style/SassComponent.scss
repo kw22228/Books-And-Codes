@@ -1,8 +1,13 @@
-@import './utils.scss';
+// @import 'utils.scss';
 
 .SassComponent {
   display: flex;
   flex-direction: column;
+  background-color: $oc-gray-2;
+
+  //   @include media('<768px') {
+  //     background-color: $oc-gray-9;
+  //   }
 
   .box {
     margin-bottom: 10px;
