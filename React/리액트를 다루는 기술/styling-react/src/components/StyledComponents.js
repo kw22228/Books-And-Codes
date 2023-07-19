@@ -1,9 +1,43 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import React from 'react';
+
+const sizes = {
+  desktop: 1024,
+  tablet: 768,
+};
+
+const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${sizes[label] / 16}em) {
+      ${css(...args)}
+    }
+  `;
+
+  return acc;
+}, {});
 
 const Box = styled.div`
-  background-color: ${props => props.color || 'blue'};
+  background-color: ${(props) => props.color || 'blue'};
   padding: 1rem;
   display: flex;
+
+  width: 1024px;
+  margin: 0 auto;
+
+  /* @media (max-width: 1024px) {
+    width: 768px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  } */
+
+  ${media.desktop`
+    width:768px;
+  `}
+
+  ${media.tablet`
+    width: 100%;
+  `}
 `;
 
 const Button = styled.button`
@@ -21,4 +55,31 @@ const Button = styled.button`
   &:hover {
     background: rgba(255, 255, 255, 0.8);
   }
+
+  ${(props) =>
+    props.inverted &&
+    css`
+      background: none;
+      border: 2px solid white;
+      color: white;
+      &:hover {
+        background: white;
+        color: black;
+      }
+    `};
+
+  & + button {
+    margin-left: 1rem;
+  }
 `;
+
+const StyledComponents = () => {
+  return (
+    <Box color="aqua">
+      <Button>안녕하세요</Button>
+      <Button inverted="true">테두리안</Button>
+    </Box>
+  );
+};
+
+export default StyledComponents;
