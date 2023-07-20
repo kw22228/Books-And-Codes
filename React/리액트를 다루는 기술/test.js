@@ -6,3 +6,6 @@ function tagged(...args) {
 }
 
 tagged(`hello`, `${{ foo: 'bar' }}`, `${() => 'world'}`);
+
+const eround =
+  execute_round['request'] !== 'None' ? execute_round['request']['when_executable'] : 'None';
