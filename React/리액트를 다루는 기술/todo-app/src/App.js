@@ -12,11 +12,12 @@ function App() {
   const nextId = useRef(4);
   const onInsert = useCallback(
     (text) => {
-      setTodos([...todos, { id: nextId, text, checked: false }]);
+      setTodos([...todos, { id: nextId.current, text, checked: false }]);
       nextId.current++;
     },
     [todos],
   );
+  const onRemove = (id) => setTodos(todos.filter((todo) => todo.id !== id));
 
   return (
     <TodoTemplate>
