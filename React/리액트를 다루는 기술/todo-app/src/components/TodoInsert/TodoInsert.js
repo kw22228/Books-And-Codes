@@ -29,4 +29,4 @@ const TodoInsert = ({ onInsert }) => {
   );
 };
 
-export default TodoInsert;
+export default React.memo(TodoInsert);
