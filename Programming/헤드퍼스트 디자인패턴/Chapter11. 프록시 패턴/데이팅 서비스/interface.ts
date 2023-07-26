@@ -9,3 +9,7 @@ export interface Person {
   set interests(interests: string);
   set geekRating(rating: number);
 }
+
+export interface InvocationHandler {
+  invoke(proxy, method, args);
+}
