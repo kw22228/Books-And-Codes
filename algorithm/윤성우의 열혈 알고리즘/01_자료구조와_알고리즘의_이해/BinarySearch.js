@@ -23,6 +23,7 @@ function bSearch(arr, len, target) {
   let first = 0;
   let last = len - 1;
   let mid;
+  let opCount = 0;
 
   while (first <= last) {
     mid = Math.floor((first + last) / 2);
@@ -31,7 +32,11 @@ function bSearch(arr, len, target) {
 
     if (target < arr[mid]) last = mid - 1;
     else first = mid + 1;
+
+    opCount++;
   }
+
+  console.log(opCount);
 
   return -1;
 }
