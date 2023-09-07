@@ -8,7 +8,7 @@ const testcase = [
 
 function solution(...args) {
   const numbersMap = new Map();
-  args.forEach(arg => {
+  args.forEach((arg) => {
     if (!numbersMap.has(arg)) {
       numbersMap.set(arg, 0);
     }
