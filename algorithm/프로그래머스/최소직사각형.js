@@ -29,7 +29,6 @@ const testcase = [
 
 function solution(sizes) {
   const sortSizes = sizes.map(size => (size[0] < size[1] ? [size[1], size[0]] : size));
-
   return Math.max(...sortSizes.map(size => size[0])) * Math.max(...sortSizes.map(size => size[1]));
 }
 
